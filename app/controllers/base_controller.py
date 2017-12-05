@@ -35,7 +35,7 @@ class BaseController(CementBaseController):
         if not files:
             files = path.join(path.expanduser('~'), '.dados')
             if not path.exists(files):
-                copy_tree(path.join(path.dirname(path.realpath(__file__)), '..', 'dados'), files)
+                copy_tree(path.abspath(path.join(path.dirname(path.realpath(__file__)), '..', 'dados')), files)
         category = pargs.category
         number = pargs.number
         if number:

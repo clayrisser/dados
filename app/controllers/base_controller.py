@@ -1,5 +1,7 @@
 from cement.core.controller import CementBaseController, expose
+from distutils.dir_util import copy_tree
 from app.services.dados_service import get_random_words
+from os import path
 
 class BaseController(CementBaseController):
     class Meta:
@@ -30,6 +32,10 @@ class BaseController(CementBaseController):
     def default(self):
         pargs = self.app.pargs
         files = pargs.files
+        if not files:
+            files = path.join(path.expanduser('~'), '.dados')
+            if not path.exists(files):
+                copy_tree(path.join(path.dirname(path.realpath(__file__)), '..', 'dados'), files)
         category = pargs.category
         number = pargs.number
         if number:

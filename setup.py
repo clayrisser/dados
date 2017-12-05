@@ -50,6 +50,8 @@ setup(
 
     install_requires=install_requires,
 
+    include_package_data=True,
+
     entry_points = {
         'console_scripts': [config.NAME + '=app.__main__:main'],
     }
